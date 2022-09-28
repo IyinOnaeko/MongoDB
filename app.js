@@ -10,7 +10,10 @@ mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true }
 
 //create new fruit schema - format for how fruit data is saved
 const fruitSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type : String,
+    required: [true, 'Please check your data entry, Type in the name of your fruit']
+  },
   rating: {
     type: Number,
     min: 1,
@@ -26,8 +29,8 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 //add a fruit using the format
 const fruit = new Fruit({
   // name: "Apple",
-  rating: 10,
-  review: "peaches are yummy"
+  rating: 8,
+  review: "Cassava is healthy"
 });
 
 
