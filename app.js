@@ -30,12 +30,12 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 const fruit = new Fruit({
   // name: "Apple",
   rating: 8,
-  review: "Cassava is healthy"
+  review: "Peach is healthy"
 });
 
 
 //save the fruit
-fruit.save();
+// fruit.save();
 
 // create a format for saving a person's data 
 
@@ -103,7 +103,22 @@ Fruit.find(function (err, fruits) {
 })
 
 
+// Fruit.updateOne({_id : "63348605f11465e186389ece" }, {name : "peach"}, function (err){
+//   if (err) {
+//     console.log(err)
+//   }else {
+//     console.log("updated field name");
+//   }
+// })
 
+// Fruit.deleteOne({ name: 'Apple' }, function (err) {
+//   if (err){
+//     console.log(err)
+//   } else {
+//     console.log("successfully deleted document")
+//   }
+//   // deleted at most one tank document
+// });
 
 
 
