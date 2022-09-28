@@ -37,21 +37,44 @@ const fruit = new Fruit({
 //save the fruit
 // fruit.save();
 
-// create a format for saving a person's data 
-
+// create a format for saving a person's data. update the person schema to allow a favourite fruit by linking the fruit schema
 const personSchema = new mongoose.Schema({
   name: String,
-  age: Number
-})
+  age: Number,
+  favouriteFruit : fruitSchema
+});
 
 // create person collection which follows the schema 
 
 const Person = mongoose.model("Person", personSchema);
 
-// add a person's data 
+
+//add a new fruit
+const pineapple = new Fruit({
+  name : "pineapple",
+  score : "9",
+  review: "Great Fruit"
+});
+
+//save fruit
+// pineapple.save();
+
+const pear = new Fruit({
+  name: "pear",
+  score: 8,
+  review: "great fruit"
+})
+
+pear.save();
+
+
+
+
+// add a person's data , update data to allow for favourite fruit linked to an already saved fruit 
 const person = new Person({
-  name: "John",
-  age: 37
+  name: "Amy",
+  age: 37,
+  favouriteFruit: pineapple
 })
 
 // save  data to the collection
@@ -80,6 +103,7 @@ const person = new Person({
 // })
 
 // inserting and validating records are saved 
+
 // Fruit.insertMany([kiwi, orange, banana], function(err) {
 //   if (err) {
 //     console.log("err");
@@ -103,6 +127,14 @@ Fruit.find(function (err, fruits) {
 })
 
 //update name of peach data in the fruits collection using the id
+
+Person.updateOne({name: "John"}, {favouriteFruit: pear}, function(err){
+  if (err){
+    console.log(err)
+  } else {
+    console.log("successfully updated");
+  }
+})
 
 // Fruit.updateOne({_id : "63348605f11465e186389ece" }, {name : "peach"}, function (err){
 //   if (err) {
