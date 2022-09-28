@@ -1,25 +1,110 @@
 //jshint esversion:6
 
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true })
-// Connection URL
 
+//require mongoose
+const mongoose = require("mongoose");
+
+//connect to the fruitsDB usnig mongooose
+mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true })
+
+
+//create new fruit schema - format for how fruit data is saved
 const fruitSchema = new mongoose.Schema({
   name: String,
   rating: Number,
   review: String
 })
 
-
+// fruit collection which follows the schema - NB, this "Fruit" changes to its plural form in the DB
 const Fruit = mongoose.model("Fruit", fruitSchema);
 
+
+//add a fruit using the format
 const fruit = new Fruit({
   name: "Apple",
   rating: 6,
   review: "sweet"
 });
 
+
+//save the fruit
 fruit.save();
+
+// create a format for saving a person's data 
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  age: Number
+})
+
+// create person collection which follows the schema 
+
+const Person = mongoose.model("Person", personSchema);
+
+// add a person's data 
+const person = new Person({
+  name: "John",
+  age: 37
+})
+
+// save  data to the collection
+person.save();
+
+
+
+//saving multiple fruits 
+
+const orange = new Fruit({
+  name: "Orange",
+  score: 4,
+  review: "very nice"
+})
+
+const banana = new Fruit({
+  name: "Banana",
+  score: 5,
+  review: "nice"
+})
+
+const kiwi = new Fruit({
+  name: "Kiwi",
+  score: 4,
+  review: "very nice"
+})
+
+// inserting and validating records are saved 
+// Fruit.insertMany([kiwi, orange, banana], function(err) {
+//   if (err) {
+//     console.log("err");
+//   } else {
+//     console.log("successfully saved all fruits to fruitsDB");
+//   }
+// } )
+
+//find names of fruit from each fruit data
+Fruit.find(function (err, fruits) {
+  if (err) {
+    console.log(err)
+  } else {
+
+    mongoose.connection.close();
+
+    fruits.forEach(function (fruit) {
+      console.log(fruit.name);
+    });
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
 
 
 const findDocuments = function (db, callback) {
