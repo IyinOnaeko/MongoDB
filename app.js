@@ -102,6 +102,7 @@ Fruit.find(function (err, fruits) {
   }
 })
 
+//update name of peach data in the fruits collection using the id
 
 // Fruit.updateOne({_id : "63348605f11465e186389ece" }, {name : "peach"}, function (err){
 //   if (err) {
@@ -111,15 +112,27 @@ Fruit.find(function (err, fruits) {
 //   }
 // })
 
+
+//delete one data in the fruits collection
+
 // Fruit.deleteOne({ name: 'Apple' }, function (err) {
 //   if (err){
 //     console.log(err)
 //   } else {
 //     console.log("successfully deleted document")
 //   }
-//   // deleted at most one tank document
 // });
 
+
+// deleting multiple records named John
+
+// Person.deleteMany({ name: "John"}, function(err){
+//   if (err) {
+//     console.log(err)
+//   } else {
+//     console.log( "successfully deleted all John's from the DB");
+//   }
+// })
 
 
 
