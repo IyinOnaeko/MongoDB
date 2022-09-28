@@ -12,14 +12,14 @@ mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true }
 const fruitSchema = new mongoose.Schema({
   name: {
     type : String,
-    required: [true, 'Please check your data entry, Type in the name of your fruit']
+    required: [true, 'Please check your data entry, Type in the name of your fruit']  //validation - required field
   },
   rating: {
-    type: Number,
-    min: 1,
-    max: 10
+    type: Number,    //dataType
+    min: 1,         // minimum value
+    max: 10        // maximum value
   },
-  review: String
+  review: String  
 })
 
 // fruit collection which follows the schema - NB, this "Fruit" changes to its plural form in the DB
@@ -28,7 +28,7 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 
 //add a fruit using the format
 const fruit = new Fruit({
-  // name: "Apple",
+  // name: "Apple",   
   rating: 8,
   review: "Peach is healthy"
 });
